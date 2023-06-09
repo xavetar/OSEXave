@@ -14,7 +14,7 @@
  */
 
 mod os_error_m;
-mod os_error_d;
+
+pub(self) use crate::types::{OSErrorOther};
 
 pub use os_error_m::{OSError};
-pub use os_error_d::{OSErrorDetails};

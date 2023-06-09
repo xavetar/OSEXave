@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-#[derive(Clone, Copy, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
-enum OSError {
+#[derive(Clone, Debug, Copy, Eq, Hash, Ord, PartialEq, PartialOrd)]
+pub enum OSError {
     ERROR_INVALID_FUNCTION = 1,
     ERROR_FILE_NOT_FOUND = 2,
     ERROR_PATH_NOT_FOUND = 3,
@@ -59,49 +59,49 @@ enum OSError {
 }
 
 impl OSError {
-    pub fn code(&self) -> u16 {
+    pub fn code(&self) -> u32 {
         match self {
-            OSError::ERROR_INVALID_FUNCTION => OSError::ERROR_INVALID_FUNCTION as u16,
-            OSError::ERROR_FILE_NOT_FOUND => OSError::ERROR_FILE_NOT_FOUND as u16,
-            OSError::ERROR_PATH_NOT_FOUND => OSError::ERROR_PATH_NOT_FOUND as u16,
-            OSError::ERROR_TOO_MANY_OPEN_FILES => OSError::ERROR_TOO_MANY_OPEN_FILES as u16,
-            OSError::ERROR_ACCESS_DENIED => OSError::ERROR_ACCESS_DENIED as u16,
-            OSError::ERROR_INVALID_HANDLE => OSError::ERROR_INVALID_HANDLE as u16,
-            OSError::ERROR_ARENA_TRASHED => OSError::ERROR_ARENA_TRASHED as u16,
-            OSError::ERROR_NOT_ENOUGH_MEMORY => OSError::ERROR_NOT_ENOUGH_MEMORY as u16,
-            OSError::ERROR_INVALID_BLOCK => OSError::ERROR_INVALID_BLOCK as u16,
-            OSError::ERROR_BAD_ENVIRONMENT => OSError::ERROR_BAD_ENVIRONMENT as u16,
-            OSError::ERROR_BAD_FORMAT => OSError::ERROR_BAD_FORMAT as u16,
-            OSError::ERROR_INVALID_ACCESS => OSError::ERROR_INVALID_ACCESS as u16,
-            OSError::ERROR_INVALID_DATA => OSError::ERROR_INVALID_DATA as u16,
-            OSError::ERROR_OUTOFMEMORY => OSError::ERROR_OUTOFMEMORY as u16,
-            OSError::ERROR_INVALID_DRIVE => OSError::ERROR_INVALID_DRIVE as u16,
-            OSError::ERROR_CURRENT_DIRECTORY => OSError::ERROR_CURRENT_DIRECTORY as u16,
-            OSError::ERROR_NOT_SAME_DEVICE => OSError::ERROR_NOT_SAME_DEVICE as u16,
-            OSError::ERROR_NO_MORE_FILES => OSError::ERROR_NO_MORE_FILES as u16,
-            OSError::ERROR_WRITE_PROTECT => OSError::ERROR_WRITE_PROTECT as u16,
-            OSError::ERROR_BAD_UNIT => OSError::ERROR_BAD_UNIT as u16,
-            OSError::ERROR_NOT_READY => OSError::ERROR_NOT_READY as u16,
-            OSError::ERROR_BAD_COMMAND => OSError::ERROR_BAD_COMMAND as u16,
-            OSError::ERROR_CRC => OSError::ERROR_CRC as u16,
-            OSError::ERROR_BAD_LENGTH => OSError::ERROR_BAD_LENGTH as u16,
-            OSError::ERROR_SEEK => OSError::ERROR_SEEK as u16,
-            OSError::ERROR_NOT_DOS_DISK => OSError::ERROR_NOT_DOS_DISK as u16,
-            OSError::ERROR_SECTOR_NOT_FOUND => OSError::ERROR_SECTOR_NOT_FOUND as u16,
-            OSError::ERROR_OUT_OF_PAPER => OSError::ERROR_OUT_OF_PAPER as u16,
-            OSError::ERROR_WRITE_FAULT => OSError::ERROR_WRITE_FAULT as u16,
-            OSError::ERROR_READ_FAULT => OSError::ERROR_READ_FAULT as u16,
-            OSError::ERROR_GEN_FAILURE => OSError::ERROR_GEN_FAILURE as u16,
-            OSError::ERROR_SHARING_VIOLATION => OSError::ERROR_SHARING_VIOLATION as u16,
-            OSError::ERROR_LOCK_VIOLATION => OSError::ERROR_LOCK_VIOLATION as u16,
-            OSError::ERROR_WRONG_DISK => OSError::ERROR_WRONG_DISK as u16,
-            OSError::ERROR_SHARING_BUFFER_EXCEEDED => OSError::ERROR_SHARING_BUFFER_EXCEEDED as u16,
-            OSError::ERROR_HANDLE_EOF => OSError::ERROR_HANDLE_EOF as u16,
-            OSError::ERROR_HANDLE_DISK_FULL => OSError::ERROR_HANDLE_DISK_FULL as u16,
-            OSError::ERROR_INVALID_PARAMETER => OSError::ERROR_INVALID_PARAMETER as u16,
-            OSError::ERROR_DISK_FULL => OSError::ERROR_DISK_FULL as u16,
-            OSError::ERROR_INVALID_NAME => OSError::ERROR_INVALID_NAME as u16,
-            OSError::ERROR_NO_SYSTEM_RESOURCES => OSError::ERROR_NO_SYSTEM_RESOURCES as u16,
+            OSError::ERROR_INVALID_FUNCTION => OSError::ERROR_INVALID_FUNCTION as u32,
+            OSError::ERROR_FILE_NOT_FOUND => OSError::ERROR_FILE_NOT_FOUND as u32,
+            OSError::ERROR_PATH_NOT_FOUND => OSError::ERROR_PATH_NOT_FOUND as u32,
+            OSError::ERROR_TOO_MANY_OPEN_FILES => OSError::ERROR_TOO_MANY_OPEN_FILES as u32,
+            OSError::ERROR_ACCESS_DENIED => OSError::ERROR_ACCESS_DENIED as u32,
+            OSError::ERROR_INVALID_HANDLE => OSError::ERROR_INVALID_HANDLE as u32,
+            OSError::ERROR_ARENA_TRASHED => OSError::ERROR_ARENA_TRASHED as u32,
+            OSError::ERROR_NOT_ENOUGH_MEMORY => OSError::ERROR_NOT_ENOUGH_MEMORY as u32,
+            OSError::ERROR_INVALID_BLOCK => OSError::ERROR_INVALID_BLOCK as u32,
+            OSError::ERROR_BAD_ENVIRONMENT => OSError::ERROR_BAD_ENVIRONMENT as u32,
+            OSError::ERROR_BAD_FORMAT => OSError::ERROR_BAD_FORMAT as u32,
+            OSError::ERROR_INVALID_ACCESS => OSError::ERROR_INVALID_ACCESS as u32,
+            OSError::ERROR_INVALID_DATA => OSError::ERROR_INVALID_DATA as u32,
+            OSError::ERROR_OUTOFMEMORY => OSError::ERROR_OUTOFMEMORY as u32,
+            OSError::ERROR_INVALID_DRIVE => OSError::ERROR_INVALID_DRIVE as u32,
+            OSError::ERROR_CURRENT_DIRECTORY => OSError::ERROR_CURRENT_DIRECTORY as u32,
+            OSError::ERROR_NOT_SAME_DEVICE => OSError::ERROR_NOT_SAME_DEVICE as u32,
+            OSError::ERROR_NO_MORE_FILES => OSError::ERROR_NO_MORE_FILES as u32,
+            OSError::ERROR_WRITE_PROTECT => OSError::ERROR_WRITE_PROTECT as u32,
+            OSError::ERROR_BAD_UNIT => OSError::ERROR_BAD_UNIT as u32,
+            OSError::ERROR_NOT_READY => OSError::ERROR_NOT_READY as u32,
+            OSError::ERROR_BAD_COMMAND => OSError::ERROR_BAD_COMMAND as u32,
+            OSError::ERROR_CRC => OSError::ERROR_CRC as u32,
+            OSError::ERROR_BAD_LENGTH => OSError::ERROR_BAD_LENGTH as u32,
+            OSError::ERROR_SEEK => OSError::ERROR_SEEK as u32,
+            OSError::ERROR_NOT_DOS_DISK => OSError::ERROR_NOT_DOS_DISK as u32,
+            OSError::ERROR_SECTOR_NOT_FOUND => OSError::ERROR_SECTOR_NOT_FOUND as u32,
+            OSError::ERROR_OUT_OF_PAPER => OSError::ERROR_OUT_OF_PAPER as u32,
+            OSError::ERROR_WRITE_FAULT => OSError::ERROR_WRITE_FAULT as u32,
+            OSError::ERROR_READ_FAULT => OSError::ERROR_READ_FAULT as u32,
+            OSError::ERROR_GEN_FAILURE => OSError::ERROR_GEN_FAILURE as u32,
+            OSError::ERROR_SHARING_VIOLATION => OSError::ERROR_SHARING_VIOLATION as u32,
+            OSError::ERROR_LOCK_VIOLATION => OSError::ERROR_LOCK_VIOLATION as u32,
+            OSError::ERROR_WRONG_DISK => OSError::ERROR_WRONG_DISK as u32,
+            OSError::ERROR_SHARING_BUFFER_EXCEEDED => OSError::ERROR_SHARING_BUFFER_EXCEEDED as u32,
+            OSError::ERROR_HANDLE_EOF => OSError::ERROR_HANDLE_EOF as u32,
+            OSError::ERROR_HANDLE_DISK_FULL => OSError::ERROR_HANDLE_DISK_FULL as u32,
+            OSError::ERROR_INVALID_PARAMETER => OSError::ERROR_INVALID_PARAMETER as u32,
+            OSError::ERROR_DISK_FULL => OSError::ERROR_DISK_FULL as u32,
+            OSError::ERROR_INVALID_NAME => OSError::ERROR_INVALID_NAME as u32,
+            OSError::ERROR_NO_SYSTEM_RESOURCES => OSError::ERROR_NO_SYSTEM_RESOURCES as u32,
             _ => panic!("Invalid OSError kind! (Windows)")
         }
     }
@@ -247,7 +247,7 @@ impl OSError {
         }
     }
 
-    pub fn kind_from_code(code: &u16) -> OSError {
+    pub fn kind_from_code(code: &u32) -> OSError {
         match code {
             1 => OSError::ERROR_INVALID_FUNCTION,
             2 => OSError::ERROR_FILE_NOT_FOUND,

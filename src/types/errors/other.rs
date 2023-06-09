@@ -15,15 +15,15 @@
 
 use super::{OSError};
 
-pub struct OSErrorDetails {
+pub struct OSErrorOther {
     code: u32,
     kind: OSError,
     description: &'static str
 }
 
-impl OSErrorDetails {
-    pub fn new(code: u16, kind: OSError, description: &'static str) -> OSErrorDetails {
-        return OSErrorDetails {
+impl OSErrorOther {
+    pub fn new(code: u32, kind: OSError, description: &'static str) -> OSErrorOther {
+        return OSErrorOther {
             code: code,
             kind: kind,
             description: description,
