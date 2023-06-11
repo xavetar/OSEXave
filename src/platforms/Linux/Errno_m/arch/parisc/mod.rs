@@ -13,8 +13,10 @@
  * limitations under the License.
  */
 
-#[cfg(target_os = "linux")]
-mod Errno_m;
+mod os_error_m;
 
-#[cfg(target_os = "linux")]
-pub use Errno_m::{OSError};
+pub(self) use crate::types::{RawError};
+
+pub(self) use crate::types::{OSErrorOther};
+
+pub use os_error_m::{OSError};

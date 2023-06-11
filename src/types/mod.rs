@@ -15,4 +15,4 @@
 
 mod errors;
 
-pub use errors::{RawErrorData, OSErrorOther};
+pub use errors::{RawError, OSErrorOther};

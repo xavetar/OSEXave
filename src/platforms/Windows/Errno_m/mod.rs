@@ -13,8 +13,14 @@
  * limitations under the License.
  */
 
+#[cfg(target_os = "windows")]
 mod os_error_m;
 
+#[cfg(target_os = "windows")]
+pub(self) use crate::types::{RawError};
+
+#[cfg(target_os = "windows")]
 pub(self) use crate::types::{OSErrorOther};
 
+#[cfg(target_os = "windows")]
 pub use os_error_m::{OSError};

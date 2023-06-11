@@ -17,25 +17,19 @@ use super::{OSError};
 
 pub struct OSErrorOther {
     code: u32,
-    kind: OSError,
     description: &'static str
 }
 
 impl OSErrorOther {
-    pub fn new(code: u32, kind: OSError, description: &'static str) -> OSErrorOther {
+    pub fn new(code: u32, description: &'static str) -> OSErrorOther {
         return OSErrorOther {
             code: code,
-            kind: kind,
             description: description,
         }
     }
 
     pub fn code(&self) -> &u32 {
         return &self.code;
-    }
-
-    pub fn kind(&self) -> &OSError {
-        return &self.kind;
     }
 
     pub fn description(&self) -> &'static str {

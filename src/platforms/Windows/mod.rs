@@ -13,6 +13,8 @@
  * limitations under the License.
  */
 
-mod OSError_m;
+#[cfg(any(feature = "windows"))]
+mod Errno_m;
 
-pub use OSError_m::{OSError};
+#[cfg(any(feature = "windows"))]
+pub use Errno_m::{OSError};

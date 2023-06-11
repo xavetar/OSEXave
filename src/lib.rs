@@ -19,7 +19,7 @@
 mod platforms;
 mod types;
 
-pub use types::{RawErrorData};
+pub use types::{RawError};
 
 #[cfg(target_os = "linux")]
 use platforms::Linux;
@@ -27,7 +27,7 @@ use platforms::Linux;
 #[cfg(target_vendor = "apple")]
 use platforms::Darwin;
 
-#[cfg(any(feature = "windows"))]
+#[cfg(target_os = "windows")]
 use platforms::Windows;
 
 macro_rules! import_oserror {
@@ -42,7 +42,7 @@ import_oserror!(Linux);
 #[cfg(target_vendor = "apple")]
 import_oserror!(Darwin);
 
-#[cfg(any(feature = "windows"))]
+#[cfg(target_os = "windows")]
 import_oserror!(Windows);
 
 impl std::fmt::Display for OSError {

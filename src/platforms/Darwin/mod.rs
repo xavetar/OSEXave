@@ -13,6 +13,8 @@
  * limitations under the License.
  */
 
-mod OSError_m;
+#[cfg(target_vendor = "apple")]
+mod Errno_m;
 
-pub use OSError_m::{OSError};
+#[cfg(target_vendor = "apple")]
+pub use Errno_m::{OSError};

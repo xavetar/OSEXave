@@ -17,38 +17,46 @@ use super::{Error};
 use super::{OSError};
 use super::{Debug, Display, Formatter, Result};
 
-pub enum RawErrorData {
+pub enum RawError {
     /// Convert raw error code to `OSError`.
     ///
     /// # Examples
     /// ```
-    /// use OSEXave::RawErrorData;
-    /// assert_eq!("RawOSError { code: 1, kind: EPERM, description: 'Operation not permitted' }", RawErrorData::RawOSError(1));
+    /// use OSEXave::RawError;
+    /// assert_eq!("RawOSError { code: 1, kind: EPERM, description: 'Operation not permitted' }", RawError::RawOSError(1));
+    /// ```
+    ///
+    /// Return raw error code.
+    ///
+    /// # Examples
+    /// ```
+    /// use OSEXave::RawError;
+    /// assert_eq!("RawOSError { code: 1, kind: EPERM, description: 'Operation not permitted' }", RawError::RawOSError(1));
     /// ```
     RawOSError(u32),
     Kind(OSError)
 }
 
-impl Error for RawErrorData {
+impl Error for RawError {
     fn source(&self) -> Option<&(dyn Error + 'static)> {
         match self {
-            RawErrorData::RawOSError(..) => None,
-            RawErrorData::Kind(..) => None
+            RawError::RawOSError(..) => None,
+            RawError::Kind(..) => None
         }
     }
 
     fn cause(&self) -> Option<&dyn Error> {
         match self {
-            RawErrorData::RawOSError(..) => None,
-            RawErrorData::Kind(..) => None
+            RawError::RawOSError(..) => None,
+            RawError::Kind(..) => None
         }
     }
 }
 
-impl Debug for RawErrorData {
+impl Debug for RawError {
     fn fmt(&self, fmt: &mut Formatter<'_>) -> Result {
         match self {
-            RawErrorData::RawOSError(code) => {
+            RawError::RawOSError(code) => {
                 let kind = OSError::kind_from_code(code);
                 fmt.debug_struct("RawOSError")
                     .field("code", &code)
@@ -56,25 +64,21 @@ impl Debug for RawErrorData {
                     .field("description", &kind.description())
                     .finish()
             }
-            RawErrorData::Kind(kind) => {
+            RawError::Kind(kind) => {
                 write!(fmt, "{}", *kind)
             }
         }
     }
 }
 
-impl Display for RawErrorData {
+impl Display for RawError {
     fn fmt(&self, fmt: &mut Formatter<'_>) -> Result {
         match self {
-            RawErrorData::RawOSError(code) => {
-                let kind = OSError::kind_from_code(code);
-                fmt.debug_struct("RawOSError")
-                    .field("code", &code)
-                    .field("kind", &kind)
-                    .field("description", &kind.description())
-                    .finish()
+            RawError::RawOSError(code) => {
+                let detail = OSError::kind_from_code(code).description();
+                write!(fmt, "{detail} (os error {code})")
             }
-            RawErrorData::Kind(kind) => {
+            RawError::Kind(kind) => {
                 write!(fmt, "{}", *kind)
             }
         }

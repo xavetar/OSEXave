@@ -13,8 +13,11 @@
  * limitations under the License.
  */
 
-mod os_error_m;
+#[cfg(target_os = "linux")]
+mod arch;
 
+#[cfg(target_os = "linux")]
 pub(self) use crate::types::{OSErrorOther};
 
-pub use os_error_m::{OSError};
+#[cfg(target_os = "linux")]
+pub use arch::{OSError};

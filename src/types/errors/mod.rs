@@ -22,4 +22,4 @@ mod other;
 mod error_d;
 
 pub use other::{OSErrorOther};
-pub use error_d::{RawErrorData};
+pub use error_d::{RawError};

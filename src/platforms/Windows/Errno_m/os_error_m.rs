@@ -13,6 +13,8 @@
  * limitations under the License.
  */
 
+use super::{RawError};
+
 #[derive(Clone, Debug, Copy, Eq, Hash, Ord, PartialEq, PartialOrd)]
 pub enum OSError {
     ERROR_INVALID_FUNCTION = 1,
@@ -106,50 +108,50 @@ impl OSError {
         }
     }
 
-    pub fn kind(&self) -> OSError {
+    pub fn error(&self) -> RawError {
         match self {
-            OSError::ERROR_INVALID_FUNCTION => OSError::ERROR_INVALID_FUNCTION,
-            OSError::ERROR_FILE_NOT_FOUND => OSError::ERROR_FILE_NOT_FOUND,
-            OSError::ERROR_PATH_NOT_FOUND => OSError::ERROR_PATH_NOT_FOUND,
-            OSError::ERROR_TOO_MANY_OPEN_FILES => OSError::ERROR_TOO_MANY_OPEN_FILES,
-            OSError::ERROR_ACCESS_DENIED => OSError::ERROR_ACCESS_DENIED,
-            OSError::ERROR_INVALID_HANDLE => OSError::ERROR_INVALID_HANDLE,
-            OSError::ERROR_ARENA_TRASHED => OSError::ERROR_ARENA_TRASHED,
-            OSError::ERROR_NOT_ENOUGH_MEMORY => OSError::ERROR_NOT_ENOUGH_MEMORY,
-            OSError::ERROR_INVALID_BLOCK => OSError::ERROR_INVALID_BLOCK,
-            OSError::ERROR_BAD_ENVIRONMENT => OSError::ERROR_BAD_ENVIRONMENT,
-            OSError::ERROR_BAD_FORMAT => OSError::ERROR_BAD_FORMAT,
-            OSError::ERROR_INVALID_ACCESS => OSError::ERROR_INVALID_ACCESS,
-            OSError::ERROR_INVALID_DATA => OSError::ERROR_INVALID_DATA,
-            OSError::ERROR_OUTOFMEMORY => OSError::ERROR_OUTOFMEMORY,
-            OSError::ERROR_INVALID_DRIVE => OSError::ERROR_INVALID_DRIVE,
-            OSError::ERROR_CURRENT_DIRECTORY => OSError::ERROR_CURRENT_DIRECTORY,
-            OSError::ERROR_NOT_SAME_DEVICE => OSError::ERROR_NOT_SAME_DEVICE,
-            OSError::ERROR_NO_MORE_FILES => OSError::ERROR_NO_MORE_FILES,
-            OSError::ERROR_WRITE_PROTECT => OSError::ERROR_WRITE_PROTECT,
-            OSError::ERROR_BAD_UNIT => OSError::ERROR_BAD_UNIT,
-            OSError::ERROR_NOT_READY => OSError::ERROR_NOT_READY,
-            OSError::ERROR_BAD_COMMAND => OSError::ERROR_BAD_COMMAND,
-            OSError::ERROR_CRC => OSError::ERROR_CRC,
-            OSError::ERROR_BAD_LENGTH => OSError::ERROR_BAD_LENGTH,
-            OSError::ERROR_SEEK => OSError::ERROR_SEEK,
-            OSError::ERROR_NOT_DOS_DISK => OSError::ERROR_NOT_DOS_DISK,
-            OSError::ERROR_SECTOR_NOT_FOUND => OSError::ERROR_SECTOR_NOT_FOUND,
-            OSError::ERROR_OUT_OF_PAPER => OSError::ERROR_OUT_OF_PAPER,
-            OSError::ERROR_WRITE_FAULT => OSError::ERROR_WRITE_FAULT,
-            OSError::ERROR_READ_FAULT => OSError::ERROR_READ_FAULT,
-            OSError::ERROR_GEN_FAILURE => OSError::ERROR_GEN_FAILURE,
-            OSError::ERROR_SHARING_VIOLATION => OSError::ERROR_SHARING_VIOLATION,
-            OSError::ERROR_LOCK_VIOLATION => OSError::ERROR_LOCK_VIOLATION,
-            OSError::ERROR_WRONG_DISK => OSError::ERROR_WRONG_DISK,
-            OSError::ERROR_SHARING_BUFFER_EXCEEDED => OSError::ERROR_SHARING_BUFFER_EXCEEDED,
-            OSError::ERROR_HANDLE_EOF => OSError::ERROR_HANDLE_EOF,
-            OSError::ERROR_HANDLE_DISK_FULL => OSError::ERROR_HANDLE_DISK_FULL,
-            OSError::ERROR_INVALID_PARAMETER => OSError::ERROR_INVALID_PARAMETER,
-            OSError::ERROR_DISK_FULL => OSError::ERROR_DISK_FULL,
-            OSError::ERROR_INVALID_NAME => OSError::ERROR_INVALID_NAME,
-            OSError::ERROR_NO_SYSTEM_RESOURCES => OSError::ERROR_NO_SYSTEM_RESOURCES,
-            _ => panic!("Invalid OSError kind! (MacOS)")
+            OSError::ERROR_INVALID_FUNCTION => RawError::RawOSError(OSError::ERROR_INVALID_FUNCTION),
+            OSError::ERROR_FILE_NOT_FOUND => RawError::RawOSError(OSError::ERROR_FILE_NOT_FOUND),
+            OSError::ERROR_PATH_NOT_FOUND => RawError::RawOSError(OSError::ERROR_PATH_NOT_FOUND),
+            OSError::ERROR_TOO_MANY_OPEN_FILES => RawError::RawOSError(OSError::ERROR_TOO_MANY_OPEN_FILES),
+            OSError::ERROR_ACCESS_DENIED => RawError::RawOSError(OSError::ERROR_ACCESS_DENIED),
+            OSError::ERROR_INVALID_HANDLE => RawError::RawOSError(OSError::ERROR_INVALID_HANDLE),
+            OSError::ERROR_ARENA_TRASHED => RawError::RawOSError(OSError::ERROR_ARENA_TRASHED),
+            OSError::ERROR_NOT_ENOUGH_MEMORY => RawError::RawOSError(OSError::ERROR_NOT_ENOUGH_MEMORY),
+            OSError::ERROR_INVALID_BLOCK => RawError::RawOSError(OSError::ERROR_INVALID_BLOCK),
+            OSError::ERROR_BAD_ENVIRONMENT => RawError::RawOSError(OSError::ERROR_BAD_ENVIRONMENT),
+            OSError::ERROR_BAD_FORMAT => RawError::RawOSError(OSError::ERROR_BAD_FORMAT),
+            OSError::ERROR_INVALID_ACCESS => RawError::RawOSError(OSError::ERROR_INVALID_ACCESS),
+            OSError::ERROR_INVALID_DATA => RawError::RawOSError(OSError::ERROR_INVALID_DATA),
+            OSError::ERROR_OUTOFMEMORY => RawError::RawOSError(OSError::ERROR_OUTOFMEMORY),
+            OSError::ERROR_INVALID_DRIVE => RawError::RawOSError(OSError::ERROR_INVALID_DRIVE),
+            OSError::ERROR_CURRENT_DIRECTORY => RawError::RawOSError(OSError::ERROR_CURRENT_DIRECTORY),
+            OSError::ERROR_NOT_SAME_DEVICE => RawError::RawOSError(OSError::ERROR_NOT_SAME_DEVICE),
+            OSError::ERROR_NO_MORE_FILES => RawError::RawOSError(OSError::ERROR_NO_MORE_FILES),
+            OSError::ERROR_WRITE_PROTECT => RawError::RawOSError(OSError::ERROR_WRITE_PROTECT),
+            OSError::ERROR_BAD_UNIT => RawError::RawOSError(OSError::ERROR_BAD_UNIT),
+            OSError::ERROR_NOT_READY => RawError::RawOSError(OSError::ERROR_NOT_READY),
+            OSError::ERROR_BAD_COMMAND => RawError::RawOSError(OSError::ERROR_BAD_COMMAND),
+            OSError::ERROR_CRC => RawError::RawOSError(OSError::ERROR_CRC),
+            OSError::ERROR_BAD_LENGTH => RawError::RawOSError(OSError::ERROR_BAD_LENGTH),
+            OSError::ERROR_SEEK => RawError::RawOSError(OSError::ERROR_SEEK),
+            OSError::ERROR_NOT_DOS_DISK => RawError::RawOSError(OSError::ERROR_NOT_DOS_DISK),
+            OSError::ERROR_SECTOR_NOT_FOUND => RawError::RawOSError(OSError::ERROR_SECTOR_NOT_FOUND),
+            OSError::ERROR_OUT_OF_PAPER => RawError::RawOSError(OSError::ERROR_OUT_OF_PAPER),
+            OSError::ERROR_WRITE_FAULT => RawError::RawOSError(OSError::ERROR_WRITE_FAULT),
+            OSError::ERROR_READ_FAULT => RawError::RawOSError(OSError::ERROR_READ_FAULT),
+            OSError::ERROR_GEN_FAILURE => RawError::RawOSError(OSError::ERROR_GEN_FAILURE),
+            OSError::ERROR_SHARING_VIOLATION => RawError::RawOSError(OSError::ERROR_SHARING_VIOLATION),
+            OSError::ERROR_LOCK_VIOLATION => RawError::RawOSError(OSError::ERROR_LOCK_VIOLATION),
+            OSError::ERROR_WRONG_DISK => RawError::RawOSError(OSError::ERROR_WRONG_DISK),
+            OSError::ERROR_SHARING_BUFFER_EXCEEDED => RawError::RawOSError(OSError::ERROR_SHARING_BUFFER_EXCEEDED),
+            OSError::ERROR_HANDLE_EOF => RawError::RawOSError(OSError::ERROR_HANDLE_EOF),
+            OSError::ERROR_HANDLE_DISK_FULL => RawError::RawOSError(OSError::ERROR_HANDLE_DISK_FULL),
+            OSError::ERROR_INVALID_PARAMETER => RawError::RawOSError(OSError::ERROR_INVALID_PARAMETER),
+            OSError::ERROR_DISK_FULL => RawError::RawOSError(OSError::ERROR_DISK_FULL),
+            OSError::ERROR_INVALID_NAME => RawError::RawOSError(OSError::ERROR_INVALID_NAME),
+            OSError::ERROR_NO_SYSTEM_RESOURCES => RawError::RawOSError(OSError::ERROR_NO_SYSTEM_RESOURCES),
+            _ => panic!("Invalid OSError kind! (Windows)")
         }
     }
 

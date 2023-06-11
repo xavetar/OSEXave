@@ -13,8 +13,14 @@
  * limitations under the License.
  */
 
+#[cfg(target_vendor = "apple")]
 mod os_error_m;
 
+#[cfg(target_vendor = "apple")]
+pub(self) use crate::types::{RawError};
+
+#[cfg(target_vendor = "apple")]
 pub(self) use crate::types::{OSErrorOther};
 
+#[cfg(target_vendor = "apple")]
 pub use os_error_m::{OSError};
