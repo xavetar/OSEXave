@@ -18,7 +18,7 @@ use super::{OSError};
 use super::{Debug, Display, Formatter, Result};
 
 pub enum RawError {
-    /// Convert raw error code to `OSError`.
+    /// Details about raw error code.
     ///
     /// # Examples
     /// ```
@@ -26,12 +26,20 @@ pub enum RawError {
     /// assert_eq!("RawOSError { code: 1, kind: EPERM, description: 'Operation not permitted' }", RawError::RawOSError(1));
     /// ```
     ///
-    /// Return raw error code.
+    /// Raise error.
     ///
     /// # Examples
     /// ```
-    /// use OSEXave::RawError;
-    /// assert_eq!("RawOSError { code: 1, kind: EPERM, description: 'Operation not permitted' }", RawError::RawOSError(1));
+    /// use OSEXave::{OSError};
+    /// use OSEXave::{RawError};
+    ///
+    /// fn get_err() -> Result<String, RawError> {
+    ///     Err(OSError::EACCES.error())
+    /// }
+    ///
+    /// fn main() {
+    ///     let test = get_err().unwrap(); // thread 'main' panicked at 'called `Result::unwrap()` on an `Err` value: RawOSError { code: 13, kind: EACCES, description: "Permission denied" }'
+    /// }
     /// ```
     RawOSError(u32),
     Kind(OSError)

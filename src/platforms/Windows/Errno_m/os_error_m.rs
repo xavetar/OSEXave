@@ -151,7 +151,7 @@ impl OSError {
             OSError::ERROR_DISK_FULL => RawError::RawOSError(OSError::ERROR_DISK_FULL),
             OSError::ERROR_INVALID_NAME => RawError::RawOSError(OSError::ERROR_INVALID_NAME),
             OSError::ERROR_NO_SYSTEM_RESOURCES => RawError::RawOSError(OSError::ERROR_NO_SYSTEM_RESOURCES),
-            _ => panic!("Invalid OSError kind! (Windows)")
+            _ => panic!("Invalid Errno! (Windows)")
         }
     }
 

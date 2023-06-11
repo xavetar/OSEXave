@@ -573,7 +573,7 @@ impl OSError {
             OSError::ENOTRECOVERABLE => RawError::RawOSError(OSError::ENOTRECOVERABLE),
             OSError::ERFKILL => RawError::RawOSError(OSError::ERFKILL),
             OSError::EHWPOISON => RawError::RawOSError(OSError::EHWPOISON),
-            _ => panic!("Invalid OSError kind! (Linux, arch: SPARC)")
+            _ => panic!("Invalid Errno! (Linux, arch: SPARC)")
         }
     }
 

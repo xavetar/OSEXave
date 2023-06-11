@@ -431,10 +431,6 @@ impl OSError {
         }
     }
 
-    // pub fn kind(&self) -> OSError {
-    //     *self
-    // }
-
     pub fn error(&self) -> RawError {
         match self {
             OSError::ESUCCESS => RawError::RawOSError(OSError::ESUCCESS),
@@ -570,7 +566,7 @@ impl OSError {
             OSError::ENOTRECOVERABLE => RawError::RawOSError(OSError::ENOTRECOVERABLE),
             OSError::ERFKILL => RawError::RawOSError(OSError::ERFKILL),
             OSError::EHWPOISON => RawError::RawOSError(OSError::EHWPOISON),
-            _ => panic!("Invalid OSError kind! (Linux, arch: PowerPC)")
+            _ => panic!("Invalid Errno! (Linux, arch: PowerPC)")
         }
     }
 

@@ -574,7 +574,7 @@ impl OSError {
             OSError::ERFKILL => RawError::RawOSError(OSError::ERFKILL),
             OSError::EHWPOISON => RawError::RawOSError(OSError::EHWPOISON),
             OSError::EDQUOT => RawError::RawOSError(OSError::EDQUOT),
-            _ => panic!("Invalid OSError kind! (Linux, arch: MIPS)")
+            _ => panic!("Invalid Errno! (Linux, arch: MIPS)")
         }
     }
 
