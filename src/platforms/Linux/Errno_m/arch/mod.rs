@@ -16,19 +16,25 @@
 #[cfg(any(all(not(target_arch = "alpha"), not(target_arch = "mips"), not(target_arch = "parisc"),
               not(target_arch = "parisc2.0"), not(target_arch = "powerpc"),
               not(target_arch = "powerpc64"), not(target_arch = "sparc"),
-              not(target_arch = "sparc64"), not(target_arch = "x86"),
-              target_arch = "x86", target_arch = "x86_64", target_arch = "aarch64",
-              target_arch = "arm", target_arch = "arm64", target_os = "linux")))]
+              not(target_arch = "sparc64"), not(target_arch = "x86"))))]
+#[cfg(any(target_arch = "x86", target_arch = "x86_64", target_arch = "aarch64", target_arch = "arm",
+          target_arch = "arm64"))]
+#[cfg(target_os = "linux")]
 mod base;
-#[cfg(target_arch = "alpha", target_os = "linux")]
+#[cfg(target_arch = "alpha")]
+#[cfg(target_os = "linux")]
 mod alpha;
-#[cfg(target_arch = "mips", target_os = "linux")]
+#[cfg(target_arch = "mips")]
+#[cfg(target_os = "linux")]
 mod mips;
-#[cfg(any(target_arch = "parisc", target_arch = "parisc2.0", target_os = "linux"))]
+#[cfg(any(target_arch = "parisc", target_arch = "parisc2.0"))]
+#[cfg(target_os = "linux")]
 mod parisc;
-#[cfg(any(target_arch = "powerpc", target_arch = "powerpc64", target_os = "linux"))]
+#[cfg(any(target_arch = "powerpc", target_arch = "powerpc64"))]
+#[cfg(target_os = "linux")]
 mod powerpc;
-#[cfg(any(target_arch = "sparc", target_arch = "sparc64", target_os = "linux"))]
+#[cfg(any(target_arch = "sparc", target_arch = "sparc64"))]
+#[cfg(target_os = "linux")]
 mod sparc;
 
 
@@ -41,17 +47,23 @@ macro_rules! import_linux_oserror {
 #[cfg(any(all(not(target_arch = "alpha"), not(target_arch = "mips"), not(target_arch = "parisc"),
               not(target_arch = "parisc2.0"), not(target_arch = "powerpc"),
               not(target_arch = "powerpc64"), not(target_arch = "sparc"),
-              not(target_arch = "sparc64"), not(target_arch = "x86"),
-              target_arch = "x86", target_arch = "x86_64", target_arch = "aarch64",
-              target_arch = "arm", target_arch = "arm64", target_os = "linux")))]
+              not(target_arch = "sparc64"), not(target_arch = "x86"))))]
+#[cfg(any(target_arch = "x86", target_arch = "x86_64", target_arch = "aarch64", target_arch = "arm",
+target_arch = "arm64"))]
+#[cfg(target_os = "linux")]
 import_linux_oserror!(base);
-#[cfg(target_arch = "alpha", target_os = "linux")]
+#[cfg(target_arch = "alpha")]
+#[cfg(target_os = "linux")]
 import_linux_oserror!(alpha);
-#[cfg(target_arch = "mips", target_os = "linux")]
+#[cfg(target_arch = "mips")]
+#[cfg(target_os = "linux")]
 import_linux_oserror!(mips);
-#[cfg(any(target_arch = "parisc", target_arch = "parisc2.0", target_os = "linux"))]
+#[cfg(any(target_arch = "parisc", target_arch = "parisc2.0"))]
+#[cfg(target_os = "linux")]
 import_linux_oserror!(parisc);
-#[cfg(any(target_arch = "powerpc", target_arch = "powerpc64", target_os = "linux"))]
+#[cfg(any(target_arch = "powerpc", target_arch = "powerpc64"))]
+#[cfg(target_os = "linux")]
 import_linux_oserror!(powerpc);
-#[cfg(any(target_arch = "sparc", target_arch = "sparc64", target_os = "linux"))]
+#[cfg(any(target_arch = "sparc", target_arch = "sparc64"))]
+#[cfg(target_os = "linux")]
 import_linux_oserror!(sparc);
