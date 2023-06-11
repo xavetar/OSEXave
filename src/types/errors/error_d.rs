@@ -41,22 +41,55 @@ pub enum RawError {
     ///     let test = get_err().unwrap(); // thread 'main' panicked at 'called `Result::unwrap()` on an `Err` value: RawOSError { code: 13, kind: EACCES, description: "Permission denied" }'
     /// }
     /// ```
-    RawOSError(u32),
-    Kind(OSError)
+    ///
+    /// # Handle OSError
+    /// ```
+    /// use OSEXave::{OSError};
+    /// use OSEXave::{RawError};
+    ///
+    /// fn get_err() -> Result<String, RawError> {
+    ///     Err(OSError::EACCES.error())
+    /// }
+    ///
+    /// fn main() {
+    ///     let result: String = match get_err() {
+    ///         Ok(test) => String::from("This is not work"),
+    ///         Err(eerr) => {
+    ///             match eerr {
+    ///                 RawError::Kind(kind) => {
+    ///                     match kind {
+    ///                         OSError::EACCES => kind.description().to_string(), // process
+    ///                         _ => std::process::exit(-1)
+    ///                     }
+    ///                 },
+    ///                 RawError::RawOSError(os_error) => {
+    ///                     match os_error { _ => os_error.to_string() }
+    ///                 }
+    ///             }
+    ///         }
+    ///     };
+    ///     assert_eq!("Permission denied", result);
+    /// }
+    /// ```
+    ///
+    Kind(OSError),
+    RawOSError(u32)
+    
+
 }
 
 impl Error for RawError {
     fn source(&self) -> Option<&(dyn Error + 'static)> {
         match self {
-            RawError::RawOSError(..) => None,
-            RawError::Kind(..) => None
+            RawError::Kind(..) => None,
+            RawError::RawOSError(..) => None
         }
     }
 
     fn cause(&self) -> Option<&dyn Error> {
         match self {
-            RawError::RawOSError(..) => None,
-            RawError::Kind(..) => None
+            RawError::Kind(..) => None,
+            RawError::RawOSError(..) => None
         }
     }
 }
@@ -64,6 +97,9 @@ impl Error for RawError {
 impl Debug for RawError {
     fn fmt(&self, fmt: &mut Formatter<'_>) -> Result {
         match self {
+            RawError::Kind(kind) => {
+                write!(fmt, "{}", kind.description())
+            },
             RawError::RawOSError(code) => {
                 let kind = OSError::kind_from_code(code);
                 fmt.debug_struct("RawOSError")
@@ -72,9 +108,6 @@ impl Debug for RawError {
                     .field("description", &kind.description())
                     .finish()
             }
-            RawError::Kind(kind) => {
-                write!(fmt, "{}", *kind)
-            }
         }
     }
 }
@@ -82,12 +115,12 @@ impl Debug for RawError {
 impl Display for RawError {
     fn fmt(&self, fmt: &mut Formatter<'_>) -> Result {
         match self {
+            RawError::Kind(kind) => {
+                write!(fmt, "{}", kind.description())
+            },
             RawError::RawOSError(code) => {
                 let detail = OSError::kind_from_code(code).description();
                 write!(fmt, "{detail} (os error {code})")
-            }
-            RawError::Kind(kind) => {
-                write!(fmt, "{}", *kind)
             }
         }
     }
