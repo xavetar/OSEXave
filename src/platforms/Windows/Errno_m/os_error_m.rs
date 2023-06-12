@@ -202,7 +202,7 @@ impl OSError {
         }
     }
 
-    pub fn kind_from_name(name: &str) -> OSError {
+    pub fn from_name(name: &str) -> OSError {
         match name {
             "ERROR_INVALID_FUNCTION" => OSError::ERROR_INVALID_FUNCTION,
             "ERROR_FILE_NOT_FOUND" => OSError::ERROR_FILE_NOT_FOUND,
@@ -249,7 +249,7 @@ impl OSError {
         }
     }
 
-    pub fn kind_from_code(code: &u32) -> OSError {
+    pub fn from_code(code: u32) -> OSError {
         match code {
             1 => OSError::ERROR_INVALID_FUNCTION,
             2 => OSError::ERROR_FILE_NOT_FOUND,

@@ -20,45 +20,70 @@ use super::{Debug, Display, Formatter, Result};
 pub enum RawError {
     /// Details about raw error code.
     ///
-    /// # Examples
+    /// # Debug information about error:
+    ///
     /// ```
-    /// use OSEXave::RawError;
+    /// use OSEXave::{RawError};
     /// assert_eq!("RawOSError { code: 1, kind: EPERM, description: 'Operation not permitted' }", RawError::RawOSError(1));
     /// ```
     ///
-    /// Raise error.
+    /// # Return error:
     ///
-    /// # Examples
     /// ```
     /// use OSEXave::{OSError};
     /// use OSEXave::{RawError};
     ///
-    /// fn get_err() -> Result<String, RawError> {
+    /// fn raise() -> Result<String, RawError> {
     ///     Err(OSError::EACCES.error())
     /// }
     ///
     /// fn main() {
-    ///     let test = get_err().unwrap(); // thread 'main' panicked at 'called `Result::unwrap()` on an `Err` value: RawOSError { code: 13, kind: EACCES, description: "Permission denied" }'
+    ///     let test = raise().unwrap(); // thread 'main' panicked at 'called `Result::unwrap()` on an `Err` value: RawOSError { code: 13, kind: EACCES, description: "Permission denied" }'
     /// }
     /// ```
     ///
-    /// # Handle OSError
+    /// # Handle std::io::RawOsError:
+    ///
     /// ```
     /// use OSEXave::{OSError};
     /// use OSEXave::{RawError};
     ///
-    /// fn get_err() -> Result<String, RawError> {
+    /// fn raise_error() -> Result<String, RawError> {
     ///     Err(OSError::EACCES.error())
     /// }
     ///
     /// fn main() {
-    ///     let result: String = match get_err() {
+    ///     let result: String = match raise_error() {
     ///         Ok(test) => String::from("This is not work"),
-    ///         Err(eerr) => {
-    ///             match eerr {
+    ///         Err(error) => {
+    ///             match OSError::from_code(error.raw_os_error() as u32) {
+    ///                 OSError::EACCES => OSError::EACCES.description().to_string(),
+    ///                 _ => std::process::exit(-1)
+    ///             }
+    ///         }
+    ///     };
+    ///     assert_eq!("Permission denied", result);
+    /// }
+    /// ```
+    /// 
+    /// # Handle OSError:
+    ///
+    /// ```
+    /// use OSEXave::{OSError};
+    /// use OSEXave::{RawError};
+    ///
+    /// fn raise_error() -> Result<String, RawError> {
+    ///     Err(OSError::EACCES.error())
+    /// }
+    ///
+    /// fn main() {
+    ///     let result: String = match raise_error() {
+    ///         Ok(test) => String::from("This is not work"),
+    ///         Err(error) => {
+    ///             match error {
     ///                 RawError::Kind(kind) => {
     ///                     match kind {
-    ///                         OSError::EACCES => kind.description().to_string(), // process
+    ///                         OSError::EACCES => kind.description().to_string(),
     ///                         _ => std::process::exit(-1)
     ///                     }
     ///                 },
@@ -74,8 +99,6 @@ pub enum RawError {
     ///
     Kind(OSError),
     RawOSError(u32)
-    
-
 }
 
 impl Error for RawError {
@@ -101,7 +124,7 @@ impl Debug for RawError {
                 write!(fmt, "{}", kind.description())
             },
             RawError::RawOSError(code) => {
-                let kind = OSError::kind_from_code(code);
+                let kind = OSError::from_code(*code);
                 fmt.debug_struct("RawOSError")
                     .field("code", &code)
                     .field("kind", &kind)
@@ -119,7 +142,7 @@ impl Display for RawError {
                 write!(fmt, "{}", kind.description())
             },
             RawError::RawOSError(code) => {
-                let detail = OSError::kind_from_code(code).description();
+                let detail = OSError::from_code(*code).description();
                 write!(fmt, "{detail} (os error {code})")
             }
         }

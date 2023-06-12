@@ -467,7 +467,7 @@ impl OSError {
         }
     }
 
-    pub fn kind_from_name(name: &str) -> OSError {
+    pub fn from_name(name: &str) -> OSError {
         return match name {
             "BASE" => OSError::BASE,
             "EPERM" => OSError::EPERM,
@@ -580,8 +580,7 @@ impl OSError {
         }
     }
 
-    // make return Result or add "two types" with OSErrorDetails
-    pub fn kind_from_code(code: &u32) -> OSError {
+    pub fn from_code(code: u32) -> OSError {
         return match code {
             0 => OSError::BASE,
             1 => OSError::EPERM,

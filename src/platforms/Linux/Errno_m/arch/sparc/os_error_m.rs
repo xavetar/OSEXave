@@ -577,7 +577,7 @@ impl OSError {
         }
     }
 
-    pub fn kind_from_name(name: &str) -> OSError {
+    pub fn from_name(name: &str) -> OSError {
         match name {
             "EPERM" => OSError::EPERM,
             "ENOENT" => OSError::ENOENT,
@@ -717,7 +717,7 @@ impl OSError {
         }
     }
 
-    pub fn kind_from_code(code: &u32) -> OSError {
+    pub fn from_code(code: u32) -> OSError {
         match code {
             1 => OSError::EPERM,
             2 => OSError::ENOENT,

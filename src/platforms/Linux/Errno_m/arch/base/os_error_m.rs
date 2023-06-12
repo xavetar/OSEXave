@@ -566,7 +566,7 @@ impl OSError {
         }
     }
 
-    pub fn kind_from_name(name: &str) -> OSError {
+    pub fn from_name(name: &str) -> OSError {
         match name {
             "ESUCCESS" => OSError::ESUCCESS,
             "EPERM" => OSError::EPERM,
@@ -704,7 +704,7 @@ impl OSError {
         }
     }
 
-    pub fn kind_from_code(code: &u32) -> OSError {
+    pub fn from_code(code: u32) -> OSError {
         match code {
             0 => OSError::ESUCCESS,
             1 => OSError::EPERM,
