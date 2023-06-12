@@ -56,7 +56,7 @@ pub enum RawError {
     ///     let result: String = match raise_error() {
     ///         Ok(test) => String::from("This is not work"),
     ///         Err(error) => {
-    ///             match OSError::from_code(error.raw_os_error() as u32) {
+    ///             match OSError::from_code(error.raw_os_error().unwrap() as u32) {
     ///                 OSError::EACCES => OSError::EACCES.description().to_string(),
     ///                 _ => std::process::exit(-1)
     ///             }
