@@ -66,7 +66,7 @@ pub enum RawError {
     /// }
     /// ```
     /// 
-    /// # Handle OSError:
+    /// # Handle RawError:
     ///
     /// ```
     /// use OSEXave::{OSError};
