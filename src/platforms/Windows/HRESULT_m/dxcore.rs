@@ -13,8 +13,14 @@
  * limitations under the License.
  */
 
-#[cfg(any(feature = "windows"))]
-mod HRESULT_m;
+pub enum DXCORE {
+    DXCORE_ERROR_EVENT_NOT_UNREGISTERED = 0x88800001,
+}
 
-#[cfg(any(feature = "windows"))]
-pub use HRESULT_m::{*};
+impl DXCORE {
+    pub fn description(&self) -> &'static str {
+        match self {
+            DXCORE::DXCORE_ERROR_EVENT_NOT_UNREGISTERED => "The application failed to unregister from an event it registered for.",
+        }
+    }
+}

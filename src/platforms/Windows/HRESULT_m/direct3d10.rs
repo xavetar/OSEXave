@@ -13,14 +13,16 @@
  * limitations under the License.
  */
 
-#[cfg(target_os = "windows")]
-mod os_error_m;
+pub enum DIRECT3D10 {
+    D3D10_ERROR_TOO_MANY_UNIQUE_STATE_OBJECTS = 0x88790001,
+    D3D10_ERROR_FILE_NOT_FOUND = 0x88790002,
+}
 
-#[cfg(target_os = "windows")]
-pub(self) use crate::types::{RawError};
-
-#[cfg(target_os = "windows")]
-pub(self) use crate::types::{OSErrorOther};
-
-#[cfg(target_os = "windows")]
-pub use os_error_m::{OSError};
+impl DIRECT3D10 {
+    pub fn description(&self) -> &'static str {
+        match self {
+            DIRECT3D10::D3D10_ERROR_TOO_MANY_UNIQUE_STATE_OBJECTS => "The application has exceeded the maximum number of unique state objects per Direct3D device.",
+            DIRECT3D10::D3D10_ERROR_FILE_NOT_FOUND => "The specified file was not found.",
+        }
+    }
+}

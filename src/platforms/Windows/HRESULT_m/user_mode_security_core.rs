@@ -13,8 +13,14 @@
  * limitations under the License.
  */
 
-#[cfg(any(feature = "windows"))]
-mod HRESULT_m;
+pub enum USER_MODE_SECURITY_CORE {
+    ERROR_SECCORE_INVALID_COMMAND = 0xC0E80000,
+}
 
-#[cfg(any(feature = "windows"))]
-pub use HRESULT_m::{*};
+impl USER_MODE_SECURITY_CORE {
+    pub fn description(&self) -> &'static str {
+        match self {
+            USER_MODE_SECURITY_CORE::ERROR_SECCORE_INVALID_COMMAND => "The command was not recognized by the security core",
+        }
+    }
+}

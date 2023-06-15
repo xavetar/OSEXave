@@ -13,8 +13,16 @@
  * limitations under the License.
  */
 
-#[cfg(any(feature = "windows"))]
-mod HRESULT_m;
+pub enum DEFRAG {
+    E_TOCPARSER_INVALIDASFFILE = 0x99000001,
+    E_TOCPARSER_INVALIDRIFFFILE = 0x99000002,
+}
 
-#[cfg(any(feature = "windows"))]
-pub use HRESULT_m::{*};
+impl DEFRAG {
+    pub fn description(&self) -> &'static str {
+        match self {
+            DEFRAG::E_TOCPARSER_INVALIDASFFILE => "Invalid ASF File (Advanced Systems Format)",
+            DEFRAG::E_TOCPARSER_INVALIDRIFFFILE => "Invalid RIFF File (Resource Interchange File Format)",
+        }
+    }
+}

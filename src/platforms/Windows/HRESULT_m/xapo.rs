@@ -13,8 +13,14 @@
  * limitations under the License.
  */
 
-#[cfg(any(feature = "windows"))]
-mod HRESULT_m;
+pub enum XAPO {
+    XAPO_E_FORMAT_UNSUPPORTED = 0x88970001,
+}
 
-#[cfg(any(feature = "windows"))]
-pub use HRESULT_m::{*};
+impl XAPO {
+    pub fn description(&self) -> &'static str {
+        match self {
+            XAPO::XAPO_E_FORMAT_UNSUPPORTED => "This XAPO does not support the requested audio format.",
+        }
+    }
+}

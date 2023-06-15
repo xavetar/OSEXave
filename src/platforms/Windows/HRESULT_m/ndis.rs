@@ -1,0 +1,122 @@
+/*
+ * Copyright 2023 Stanislav Mikhailov (xavetar)
+ *
+ * Licensed under the Creative Commons Zero v1.0 Universal (CC0) License.
+ * You may obtain a copy of the License at
+ *
+ *     http://creativecommons.org/publicdomain/zero/1.0/
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the CC0 license is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+pub enum NDIS {
+    ERROR_NDIS_INDICATION_REQUIRED = 0x00340001,
+    ERROR_NDIS_INTERFACE_CLOSING = 0x80340002,
+    ERROR_NDIS_BAD_VERSION = 0x80340004,
+    ERROR_NDIS_BAD_CHARACTERISTICS = 0x80340005,
+    ERROR_NDIS_ADAPTER_NOT_FOUND = 0x80340006,
+    ERROR_NDIS_OPEN_FAILED = 0x80340007,
+    ERROR_NDIS_DEVICE_FAILED = 0x80340008,
+    ERROR_NDIS_MULTICAST_FULL = 0x80340009,
+    ERROR_NDIS_MULTICAST_EXISTS = 0x8034000A,
+    ERROR_NDIS_MULTICAST_NOT_FOUND = 0x8034000B,
+    ERROR_NDIS_REQUEST_ABORTED = 0x8034000C,
+    ERROR_NDIS_RESET_IN_PROGRESS = 0x8034000D,
+    ERROR_NDIS_INVALID_PACKET = 0x8034000F,
+    ERROR_NDIS_INVALID_DEVICE_REQUEST = 0x80340010,
+    ERROR_NDIS_ADAPTER_NOT_READY = 0x80340011,
+    ERROR_NDIS_INVALID_LENGTH = 0x80340014,
+    ERROR_NDIS_INVALID_DATA = 0x80340015,
+    ERROR_NDIS_BUFFER_TOO_SHORT = 0x80340016,
+    ERROR_NDIS_INVALID_OID = 0x80340017,
+    ERROR_NDIS_ADAPTER_REMOVED = 0x80340018,
+    ERROR_NDIS_UNSUPPORTED_MEDIA = 0x80340019,
+    ERROR_NDIS_GROUP_ADDRESS_IN_USE = 0x8034001A,
+    ERROR_NDIS_FILE_NOT_FOUND = 0x8034001B,
+    ERROR_NDIS_ERROR_READING_FILE = 0x8034001C,
+    ERROR_NDIS_ALREADY_MAPPED = 0x8034001D,
+    ERROR_NDIS_RESOURCE_CONFLICT = 0x8034001E,
+    ERROR_NDIS_MEDIA_DISCONNECTED = 0x8034001F,
+    ERROR_NDIS_INVALID_ADDRESS = 0x80340022,
+    ERROR_NDIS_PAUSED = 0x8034002A,
+    ERROR_NDIS_INTERFACE_NOT_FOUND = 0x8034002B,
+    ERROR_NDIS_UNSUPPORTED_REVISION = 0x8034002C,
+    ERROR_NDIS_INVALID_PORT = 0x8034002D,
+    ERROR_NDIS_INVALID_PORT_STATE = 0x8034002E,
+    ERROR_NDIS_LOW_POWER_STATE = 0x8034002F,
+    ERROR_NDIS_REINIT_REQUIRED = 0x80340030,
+    ERROR_NDIS_NO_QUEUES = 0x80340031,
+    ERROR_NDIS_NOT_SUPPORTED = 0x803400BB,
+    ERROR_NDIS_DOT11_AUTO_CONFIG_ENABLED = 0x80342000,
+    ERROR_NDIS_DOT11_MEDIA_IN_USE = 0x80342001,
+    ERROR_NDIS_DOT11_POWER_STATE_INVALID = 0x80342002,
+    ERROR_NDIS_PM_WOL_PATTERN_LIST_FULL = 0x80342003,
+    ERROR_NDIS_PM_PROTOCOL_OFFLOAD_LIST_FULL = 0x80342004,
+    ERROR_NDIS_DOT11_AP_CHANNEL_CURRENTLY_NOT_AVAILABLE = 0x80342005,
+    ERROR_NDIS_DOT11_AP_BAND_CURRENTLY_NOT_AVAILABLE = 0x80342006,
+    ERROR_NDIS_DOT11_AP_CHANNEL_NOT_ALLOWED = 0x80342007,
+    ERROR_NDIS_DOT11_AP_BAND_NOT_ALLOWED = 0x80342008,
+    ERROR_NDIS_OFFLOAD_POLICY = 0xC034100F,
+    ERROR_NDIS_OFFLOAD_CONNECTION_REJECTED = 0xC0341012,
+    ERROR_NDIS_OFFLOAD_PATH_REJECTED = 0xC0341013,
+}
+
+impl NDIS {
+    pub fn description(&self) -> &'static str {
+        match self {
+            NDIS::ERROR_NDIS_INDICATION_REQUIRED => "The request will be completed later by NDIS status indication.",
+            NDIS::ERROR_NDIS_INTERFACE_CLOSING => "The binding to the network interface is being closed.",
+            NDIS::ERROR_NDIS_BAD_VERSION => "An invalid version was specified.",
+            NDIS::ERROR_NDIS_BAD_CHARACTERISTICS => "An invalid characteristics table was used.",
+            NDIS::ERROR_NDIS_ADAPTER_NOT_FOUND => "Failed to find the network interface or network interface is not ready.",
+            NDIS::ERROR_NDIS_OPEN_FAILED => "Failed to open the network interface.",
+            NDIS::ERROR_NDIS_DEVICE_FAILED => "Network interface has encountered an internal unrecoverable failure.",
+            NDIS::ERROR_NDIS_MULTICAST_FULL => "The multicast list on the network interface is full.",
+            NDIS::ERROR_NDIS_MULTICAST_EXISTS => "An attempt was made to add a duplicate multicast address to the list.",
+            NDIS::ERROR_NDIS_MULTICAST_NOT_FOUND => "At attempt was made to remove a multicast address that was never added.",
+            NDIS::ERROR_NDIS_REQUEST_ABORTED => "Netowork interface aborted the request.",
+            NDIS::ERROR_NDIS_RESET_IN_PROGRESS => "Network interface can not process the request because it is being reset.",
+            NDIS::ERROR_NDIS_INVALID_PACKET => "An attempt was made to send an invalid packet on a network interface.",
+            NDIS::ERROR_NDIS_INVALID_DEVICE_REQUEST => "The specified request is not a valid operation for the target device.",
+            NDIS::ERROR_NDIS_ADAPTER_NOT_READY => "Network interface is not ready to complete this operation.",
+            NDIS::ERROR_NDIS_INVALID_LENGTH => "The length of the buffer submitted for this operation is not valid.",
+            NDIS::ERROR_NDIS_INVALID_DATA => "The data used for this operation is not valid.",
+            NDIS::ERROR_NDIS_BUFFER_TOO_SHORT => "The length of buffer submitted for this operation is too small.",
+            NDIS::ERROR_NDIS_INVALID_OID => "Network interface does not support this OID (Object Identifier)",
+            NDIS::ERROR_NDIS_ADAPTER_REMOVED => "The network interface has been removed.",
+            NDIS::ERROR_NDIS_UNSUPPORTED_MEDIA => "Network interface does not support this media type.",
+            NDIS::ERROR_NDIS_GROUP_ADDRESS_IN_USE => "An attempt was made to remove a token ring group address that is in use by other components.",
+            NDIS::ERROR_NDIS_FILE_NOT_FOUND => "An attempt was made to map a file that can not be found.",
+            NDIS::ERROR_NDIS_ERROR_READING_FILE => "An error occurred while NDIS tried to map the file.",
+            NDIS::ERROR_NDIS_ALREADY_MAPPED => "An attempt was made to map a file that is alreay mapped.",
+            NDIS::ERROR_NDIS_RESOURCE_CONFLICT => "An attempt to allocate a hardware resource failed because the resource is used by another component.",
+            NDIS::ERROR_NDIS_MEDIA_DISCONNECTED => "The I/O operation failed because network media is disconnected or wireless access point is out of range.",
+            NDIS::ERROR_NDIS_INVALID_ADDRESS => "The network address used in the request is invalid.",
+            NDIS::ERROR_NDIS_PAUSED => "The offload operation on the network interface has been paused.",
+            NDIS::ERROR_NDIS_INTERFACE_NOT_FOUND => "Network interface was not found.",
+            NDIS::ERROR_NDIS_UNSUPPORTED_REVISION => "The revision number specified in the structure is not supported.",
+            NDIS::ERROR_NDIS_INVALID_PORT => "The specified port does not exist on this network interface.",
+            NDIS::ERROR_NDIS_INVALID_PORT_STATE => "The current state of the specified port on this network interface does not support the requested operation.",
+            NDIS::ERROR_NDIS_LOW_POWER_STATE => "The miniport adapter is in low power state.",
+            NDIS::ERROR_NDIS_REINIT_REQUIRED => "This operation requires the miniport adapter to be reinitialized.",
+            NDIS::ERROR_NDIS_NO_QUEUES => "There are not enough queues to complete the operation.",
+            NDIS::ERROR_NDIS_NOT_SUPPORTED => "Netword interface does not support this request.",
+            NDIS::ERROR_NDIS_DOT11_AUTO_CONFIG_ENABLED => "The wireless local area network interface is in auto configuration mode and doesn't support the requested parameter change operation.",
+            NDIS::ERROR_NDIS_DOT11_MEDIA_IN_USE => "The wireless local area network interface is busy and can not perform the requested operation.",
+            NDIS::ERROR_NDIS_DOT11_POWER_STATE_INVALID => "The wireless local area network interface is powered down and doesn't support the requested operation.",
+            NDIS::ERROR_NDIS_PM_WOL_PATTERN_LIST_FULL => "The list of wake on LAN patterns is full.",
+            NDIS::ERROR_NDIS_PM_PROTOCOL_OFFLOAD_LIST_FULL => "The list of low power protocol offloads is full.",
+            NDIS::ERROR_NDIS_DOT11_AP_CHANNEL_CURRENTLY_NOT_AVAILABLE => "The wireless local area network interface cannot start an AP on the specified channel right now.",
+            NDIS::ERROR_NDIS_DOT11_AP_BAND_CURRENTLY_NOT_AVAILABLE => "The wireless local area network interface cannot start an AP on the specified band right now.",
+            NDIS::ERROR_NDIS_DOT11_AP_CHANNEL_NOT_ALLOWED => "The wireless local area network interface cannot start an AP on this channel due to regulatory reasons.",
+            NDIS::ERROR_NDIS_DOT11_AP_BAND_NOT_ALLOWED => "The wireless local area network interface cannot start an AP on this band due to regulatory reasons.",
+            NDIS::ERROR_NDIS_OFFLOAD_POLICY => "The TCP connection is not offloadable because of a local policy setting.",
+            NDIS::ERROR_NDIS_OFFLOAD_CONNECTION_REJECTED => "The TCP connection is not offloadable by the Chimney Offload target.",
+            NDIS::ERROR_NDIS_OFFLOAD_PATH_REJECTED => "The IP Path object is not in an offloadable state.",
+        }
+    }
+}

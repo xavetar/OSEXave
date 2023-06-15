@@ -13,8 +13,14 @@
  * limitations under the License.
  */
 
-#[cfg(any(feature = "windows"))]
-mod HRESULT_m;
+pub enum PRESENTATION {
+    PRESENTATION_ERROR_LOST = 0x88810001,
+}
 
-#[cfg(any(feature = "windows"))]
-pub use HRESULT_m::{*};
+impl PRESENTATION {
+    pub fn description(&self) -> &'static str {
+        match self {
+            PRESENTATION::PRESENTATION_ERROR_LOST => "The presentation manager has been lost and can no longer be used. The application should destroy this presentation manager and create a new presentation manager to use.",
+        }
+    }
+}

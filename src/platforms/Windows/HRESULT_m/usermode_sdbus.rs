@@ -13,8 +13,14 @@
  * limitations under the License.
  */
 
-#[cfg(any(feature = "windows"))]
-mod HRESULT_m;
+pub enum USERMODE_SDBUS {
+    ERROR_IO_PREEMPTED = 0x89010001,
+}
 
-#[cfg(any(feature = "windows"))]
-pub use HRESULT_m::{*};
+impl USERMODE_SDBUS {
+    pub fn description(&self) -> &'static str {
+        match self {
+            USERMODE_SDBUS::ERROR_IO_PREEMPTED => "The operation was preempted by a higher priority operation. It must be resumed later.",
+        }
+    }
+}

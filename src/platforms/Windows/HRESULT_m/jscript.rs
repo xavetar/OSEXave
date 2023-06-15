@@ -13,8 +13,14 @@
  * limitations under the License.
  */
 
-#[cfg(any(feature = "windows"))]
-mod HRESULT_m;
+pub enum JSCRIPT {
+    JSCRIPT_E_CANTEXECUTE = 0x89020001,
+}
 
-#[cfg(any(feature = "windows"))]
-pub use HRESULT_m::{*};
+impl JSCRIPT {
+    pub fn description(&self) -> &'static str {
+        match self {
+            JSCRIPT::JSCRIPT_E_CANTEXECUTE => "Function could not execute because it was deleted or garbage collected.",
+        }
+    }
+}
