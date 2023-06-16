@@ -26,23 +26,17 @@ mod bluetooth_att;
 #[cfg(any(feature = "windows"))]
 mod cert;
 #[cfg(any(feature = "windows"))]
-mod complus_hid;
+mod complus;
 #[cfg(any(feature = "windows"))]
-mod control_terminal_server;
+mod configuration;
+#[cfg(any(feature = "windows"))]
+mod control;
 #[cfg(any(feature = "windows"))]
 mod d2d;
 #[cfg(any(feature = "windows"))]
 mod debuggers;
 #[cfg(any(feature = "windows"))]
 mod defrag;
-#[cfg(any(feature = "windows"))]
-mod deployment_services_content_provider_wdscp;
-#[cfg(any(feature = "windows"))]
-mod deployment_services_multicast_client_wdsmcclient;
-#[cfg(any(feature = "windows"))]
-mod deployment_services_multicast_server_wdsmcserver;
-#[cfg(any(feature = "windows"))]
-mod deployment_services_transport_management_wdstptmgmt;
 #[cfg(any(feature = "windows"))]
 mod direct3d10;
 #[cfg(any(feature = "windows"))]
@@ -56,7 +50,7 @@ mod direct_draw;
 #[cfg(any(feature = "windows"))]
 mod directmusic;
 #[cfg(any(feature = "windows"))]
-mod dispatch_rpc_runtime;
+mod dispatch;
 #[cfg(any(feature = "windows"))]
 mod dlt;
 #[cfg(any(feature = "windows"))]
@@ -66,13 +60,11 @@ mod dxgi;
 #[cfg(any(feature = "windows"))]
 mod dxgi_ddi;
 #[cfg(any(feature = "windows"))]
-mod eap_bth_att;
+mod eap;
 #[cfg(any(feature = "windows"))]
 mod eas;
 #[cfg(any(feature = "windows"))]
 mod fve;
-#[cfg(any(feature = "windows"))]
-mod fve_configuration_wia;
 #[cfg(any(feature = "windows"))]
 mod fwp;
 #[cfg(any(feature = "windows"))]
@@ -82,15 +74,17 @@ mod hsp_services;
 #[cfg(any(feature = "windows"))]
 mod hsp_software;
 #[cfg(any(feature = "windows"))]
-mod http_transaction;
+mod http;
 #[cfg(any(feature = "windows"))]
 mod imapi2;
 #[cfg(any(feature = "windows"))]
-mod input_resume_key_filter;
+mod input;
 #[cfg(any(feature = "windows"))]
 mod internet;
 #[cfg(any(feature = "windows"))]
-mod itf_sl_sapi_enhanced_storage_io;
+mod ioring;
+#[cfg(any(feature = "windows"))]
+mod itf;
 #[cfg(any(feature = "windows"))]
 mod jscript;
 #[cfg(any(feature = "windows"))]
@@ -102,47 +96,43 @@ mod mbn_powershell;
 #[cfg(any(feature = "windows"))]
 mod mca;
 #[cfg(any(feature = "windows"))]
-mod mf_ns_mediaserver;
+mod mediaserver;
 #[cfg(any(feature = "windows"))]
 mod msmq;
 #[cfg(any(feature = "windows"))]
 mod ndis;
 #[cfg(any(feature = "windows"))]
-mod nt_ioring;
-#[cfg(any(feature = "windows"))]
 mod ntdsb;
 #[cfg(any(feature = "windows"))]
-mod null_system;
+mod null;
 #[cfg(any(feature = "windows"))]
 mod online_id;
 #[cfg(any(feature = "windows"))]
+mod opc;
+#[cfg(any(feature = "windows"))]
 mod p2p;
 #[cfg(any(feature = "windows"))]
-mod p2p_int_drt;
+mod p2p_int;
 #[cfg(any(feature = "windows"))]
 mod pint_status_code;
 #[cfg(any(feature = "windows"))]
 mod presentation;
 #[cfg(any(feature = "windows"))]
-mod quic_rdbss;
+mod quic;
 #[cfg(any(feature = "windows"))]
 mod rddb;
 #[cfg(any(feature = "windows"))]
-mod rpc_debugger;
-#[cfg(any(feature = "windows"))]
-mod rpc_stubs_storage;
+mod rpc;
 #[cfg(any(feature = "windows"))]
 mod rtc_interface;
 #[cfg(any(feature = "windows"))]
 mod sb;
 #[cfg(any(feature = "windows"))]
-mod scard_usb;
-#[cfg(any(feature = "windows"))]
-mod sdbus_opc;
+mod scard;
 #[cfg(any(feature = "windows"))]
 mod sdiag;
 #[cfg(any(feature = "windows"))]
-mod security_sspi_ntsspi_winbio;
+mod security_sspi;
 #[cfg(any(feature = "windows"))]
 mod setupapi;
 #[cfg(any(feature = "windows"))]
@@ -158,17 +148,19 @@ mod sqlite;
 #[cfg(any(feature = "windows"))]
 mod staterepository;
 #[cfg(any(feature = "windows"))]
+mod storage;
+#[cfg(any(feature = "windows"))]
 mod syncengine;
 #[cfg(any(feature = "windows"))]
 mod tiering;
 #[cfg(any(feature = "windows"))]
-mod tpm_services_ink;
+mod tpm_services;
 #[cfg(any(feature = "windows"))]
 mod tpm_software;
 #[cfg(any(feature = "windows"))]
-mod ui_rtpm_wpd;
+mod ui;
 #[cfg(any(feature = "windows"))]
-mod urt_cluster;
+mod urt;
 #[cfg(any(feature = "windows"))]
 mod user_mode_security_core;
 #[cfg(any(feature = "windows"))]
@@ -194,6 +186,14 @@ mod usermode_volsnap;
 #[cfg(any(feature = "windows"))]
 mod utc;
 #[cfg(any(feature = "windows"))]
+mod wds_content_provider;
+#[cfg(any(feature = "windows"))]
+mod wds_mc_client;
+#[cfg(any(feature = "windows"))]
+mod wds_mc_server;
+#[cfg(any(feature = "windows"))]
+mod wds_tm;
+#[cfg(any(feature = "windows"))]
 mod web;
 #[cfg(any(feature = "windows"))]
 mod web_socket;
@@ -202,29 +202,29 @@ mod webservices_winpe;
 #[cfg(any(feature = "windows"))]
 mod wep;
 #[cfg(any(feature = "windows"))]
-mod wer_video;
+mod wer;
 #[cfg(any(feature = "windows"))]
-mod win32_mf_ns_nt;
+mod win32;
 #[cfg(any(feature = "windows"))]
-mod wincodec_dwrite_dwm_err;
+mod wincodec_dwrite_dwm;
+#[cfg(any(feature = "windows"))]
+mod windows;
 #[cfg(any(feature = "windows"))]
 mod windows_ce;
 #[cfg(any(feature = "windows"))]
-mod windows_defender_volsnap;
-#[cfg(any(feature = "windows"))]
-mod windows_ntcert;
+mod windows_defender;
 #[cfg(any(feature = "windows"))]
 mod windows_setup_pla;
 #[cfg(any(feature = "windows"))]
-mod windows_store_win32k_ntgdi;
+mod windows_store;
 #[cfg(any(feature = "windows"))]
-mod windowsupdate_quic;
+mod windowsupdate;
 #[cfg(any(feature = "windows"))]
 mod winml;
 #[cfg(any(feature = "windows"))]
 mod winrm;
 #[cfg(any(feature = "windows"))]
-mod wpn_win32k_ntuser;
+mod wpn;
 #[cfg(any(feature = "windows"))]
 mod xactengine;
 #[cfg(any(feature = "windows"))]
@@ -237,6 +237,7 @@ mod xaudio2;
 mod xps;
 #[cfg(any(feature = "windows"))]
 
+#[cfg(any(feature = "windows"))]
 pub use audclnt::{*};
 #[cfg(any(feature = "windows"))]
 pub use audio::{*};
@@ -249,23 +250,17 @@ pub use bluetooth_att::{*};
 #[cfg(any(feature = "windows"))]
 pub use cert::{*};
 #[cfg(any(feature = "windows"))]
-pub use complus_hid::{*};
+pub use complus::{*};
 #[cfg(any(feature = "windows"))]
-pub use control_terminal_server::{*};
+pub use configuration::{*};
+#[cfg(any(feature = "windows"))]
+pub use control::{*};
 #[cfg(any(feature = "windows"))]
 pub use d2d::{*};
 #[cfg(any(feature = "windows"))]
 pub use debuggers::{*};
 #[cfg(any(feature = "windows"))]
 pub use defrag::{*};
-#[cfg(any(feature = "windows"))]
-pub use deployment_services_content_provider_wdscp::{*};
-#[cfg(any(feature = "windows"))]
-pub use deployment_services_multicast_client_wdsmcclient::{*};
-#[cfg(any(feature = "windows"))]
-pub use deployment_services_multicast_server_wdsmcserver::{*};
-#[cfg(any(feature = "windows"))]
-pub use deployment_services_transport_management_wdstptmgmt::{*};
 #[cfg(any(feature = "windows"))]
 pub use direct3d10::{*};
 #[cfg(any(feature = "windows"))]
@@ -279,7 +274,7 @@ pub use direct_draw::{*};
 #[cfg(any(feature = "windows"))]
 pub use directmusic::{*};
 #[cfg(any(feature = "windows"))]
-pub use dispatch_rpc_runtime::{*};
+pub use dispatch::{*};
 #[cfg(any(feature = "windows"))]
 pub use dlt::{*};
 #[cfg(any(feature = "windows"))]
@@ -289,13 +284,11 @@ pub use dxgi::{*};
 #[cfg(any(feature = "windows"))]
 pub use dxgi_ddi::{*};
 #[cfg(any(feature = "windows"))]
-pub use eap_bth_att::{*};
+pub use eap::{*};
 #[cfg(any(feature = "windows"))]
 pub use eas::{*};
 #[cfg(any(feature = "windows"))]
 pub use fve::{*};
-#[cfg(any(feature = "windows"))]
-pub use fve_configuration_wia::{*};
 #[cfg(any(feature = "windows"))]
 pub use fwp::{*};
 #[cfg(any(feature = "windows"))]
@@ -305,15 +298,17 @@ pub use hsp_services::{*};
 #[cfg(any(feature = "windows"))]
 pub use hsp_software::{*};
 #[cfg(any(feature = "windows"))]
-pub use http_transaction::{*};
+pub use http::{*};
 #[cfg(any(feature = "windows"))]
 pub use imapi2::{*};
 #[cfg(any(feature = "windows"))]
-pub use input_resume_key_filter::{*};
+pub use input::{*};
 #[cfg(any(feature = "windows"))]
 pub use internet::{*};
 #[cfg(any(feature = "windows"))]
-pub use itf_sl_sapi_enhanced_storage_io::{*};
+pub use ioring::{*};
+#[cfg(any(feature = "windows"))]
+pub use itf::{*};
 #[cfg(any(feature = "windows"))]
 pub use jscript::{*};
 #[cfg(any(feature = "windows"))]
@@ -325,47 +320,43 @@ pub use mbn_powershell::{*};
 #[cfg(any(feature = "windows"))]
 pub use mca::{*};
 #[cfg(any(feature = "windows"))]
-pub use mf_ns_mediaserver::{*};
+pub use mediaserver::{*};
 #[cfg(any(feature = "windows"))]
 pub use msmq::{*};
 #[cfg(any(feature = "windows"))]
 pub use ndis::{*};
 #[cfg(any(feature = "windows"))]
-pub use nt_ioring::{*};
-#[cfg(any(feature = "windows"))]
 pub use ntdsb::{*};
 #[cfg(any(feature = "windows"))]
-pub use null_system::{*};
+pub use null::{*};
 #[cfg(any(feature = "windows"))]
 pub use online_id::{*};
 #[cfg(any(feature = "windows"))]
+pub use opc::{*};
+#[cfg(any(feature = "windows"))]
 pub use p2p::{*};
 #[cfg(any(feature = "windows"))]
-pub use p2p_int_drt::{*};
+pub use p2p_int::{*};
 #[cfg(any(feature = "windows"))]
 pub use pint_status_code::{*};
 #[cfg(any(feature = "windows"))]
 pub use presentation::{*};
 #[cfg(any(feature = "windows"))]
-pub use quic_rdbss::{*};
+pub use quic::{*};
 #[cfg(any(feature = "windows"))]
 pub use rddb::{*};
 #[cfg(any(feature = "windows"))]
-pub use rpc_debugger::{*};
-#[cfg(any(feature = "windows"))]
-pub use rpc_stubs_storage::{*};
+pub use rpc::{*};
 #[cfg(any(feature = "windows"))]
 pub use rtc_interface::{*};
 #[cfg(any(feature = "windows"))]
 pub use sb::{*};
 #[cfg(any(feature = "windows"))]
-pub use scard_usb::{*};
-#[cfg(any(feature = "windows"))]
-pub use sdbus_opc::{*};
+pub use scard::{*};
 #[cfg(any(feature = "windows"))]
 pub use sdiag::{*};
 #[cfg(any(feature = "windows"))]
-pub use security_sspi_ntsspi_winbio::{*};
+pub use security_sspi::{*};
 #[cfg(any(feature = "windows"))]
 pub use setupapi::{*};
 #[cfg(any(feature = "windows"))]
@@ -381,17 +372,19 @@ pub use sqlite::{*};
 #[cfg(any(feature = "windows"))]
 pub use staterepository::{*};
 #[cfg(any(feature = "windows"))]
+pub use storage::{*};
+#[cfg(any(feature = "windows"))]
 pub use syncengine::{*};
 #[cfg(any(feature = "windows"))]
 pub use tiering::{*};
 #[cfg(any(feature = "windows"))]
-pub use tpm_services_ink::{*};
+pub use tpm_services::{*};
 #[cfg(any(feature = "windows"))]
 pub use tpm_software::{*};
 #[cfg(any(feature = "windows"))]
-pub use ui_rtpm_wpd::{*};
+pub use ui::{*};
 #[cfg(any(feature = "windows"))]
-pub use urt_cluster::{*};
+pub use urt::{*};
 #[cfg(any(feature = "windows"))]
 pub use user_mode_security_core::{*};
 #[cfg(any(feature = "windows"))]
@@ -417,6 +410,14 @@ pub use usermode_volsnap::{*};
 #[cfg(any(feature = "windows"))]
 pub use utc::{*};
 #[cfg(any(feature = "windows"))]
+pub use wds_content_provider::{*};
+#[cfg(any(feature = "windows"))]
+pub use wds_mc_client::{*};
+#[cfg(any(feature = "windows"))]
+pub use wds_mc_server::{*};
+#[cfg(any(feature = "windows"))]
+pub use wds_tm::{*};
+#[cfg(any(feature = "windows"))]
 pub use web::{*};
 #[cfg(any(feature = "windows"))]
 pub use web_socket::{*};
@@ -425,29 +426,29 @@ pub use webservices_winpe::{*};
 #[cfg(any(feature = "windows"))]
 pub use wep::{*};
 #[cfg(any(feature = "windows"))]
-pub use wer_video::{*};
+pub use wer::{*};
 #[cfg(any(feature = "windows"))]
-pub use win32_mf_ns_nt::{*};
+pub use win32::{*};
 #[cfg(any(feature = "windows"))]
-pub use wincodec_dwrite_dwm_err::{*};
+pub use wincodec_dwrite_dwm::{*};
+#[cfg(any(feature = "windows"))]
+pub use windows::{*};
 #[cfg(any(feature = "windows"))]
 pub use windows_ce::{*};
 #[cfg(any(feature = "windows"))]
-pub use windows_defender_volsnap::{*};
-#[cfg(any(feature = "windows"))]
-pub use windows_ntcert::{*};
+pub use windows_defender::{*};
 #[cfg(any(feature = "windows"))]
 pub use windows_setup_pla::{*};
 #[cfg(any(feature = "windows"))]
-pub use windows_store_win32k_ntgdi::{*};
+pub use windows_store::{*};
 #[cfg(any(feature = "windows"))]
-pub use windowsupdate_quic::{*};
+pub use windowsupdate::{*};
 #[cfg(any(feature = "windows"))]
 pub use winml::{*};
 #[cfg(any(feature = "windows"))]
 pub use winrm::{*};
 #[cfg(any(feature = "windows"))]
-pub use wpn_win32k_ntuser::{*};
+pub use wpn::{*};
 #[cfg(any(feature = "windows"))]
 pub use xactengine::{*};
 #[cfg(any(feature = "windows"))]
