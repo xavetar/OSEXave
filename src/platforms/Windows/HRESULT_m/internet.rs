@@ -257,7 +257,7 @@ impl INTERNET {
             INTERNET::XML_E_MISSING_PAREN => "Missing parenthesis.",
             INTERNET::XML_E_BADCHARINENUMERATION => "Invalid character found in ATTLIST enumeration.",
             INTERNET::XML_E_PIDECLSYNTAX => "Invalid syntax in processing instruction declaration.",
-            INTERNET::XML_E_EXPECTINGCLOSEQUOTE => "A single or double closing quote character (\' or \",
+            INTERNET::XML_E_EXPECTINGCLOSEQUOTE => "A single or double closing quote character (\' or \") is missing.",
             INTERNET::XML_E_MULTIPLE_COLONS => "Multiple colons are not allowed in a name.",
             INTERNET::XML_E_WHITESPACEORQUESTIONMARK => "Expecting white space or '?'.",
             INTERNET::XML_E_SUSPENDED => "The parser is suspended.",
