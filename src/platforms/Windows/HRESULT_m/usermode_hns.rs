@@ -70,7 +70,6 @@ pub enum USERMODE_HNS {
     HCN_INTERFACEPARAMETERS_ALREADY_APPLIED = 0x803B0036,
     HCN_E_VFP_NOT_ALLOWED = 0x803B0037,
     ERROR_HNS_PORT_ALLOCATED = 0xC03B0001,
-    ERROR_HNS_MAPPING_NOT_SUPPORTED = 0xC03B0002
 }
 
 impl USERMODE_HNS {
@@ -132,7 +131,6 @@ impl USERMODE_HNS {
             USERMODE_HNS::HCN_INTERFACEPARAMETERS_ALREADY_APPLIED => "Cannot apply more than one InterfaceParameters policy.",
             USERMODE_HNS::HCN_E_VFP_NOT_ALLOWED => "A network of this type can not be created because VFP is not available.",
             USERMODE_HNS::ERROR_HNS_PORT_ALLOCATED => "The port is already allocated.",
-            USERMODE_HNS::ERROR_HNS_MAPPING_NOT_SUPPORTED => "Port mapping is not supported on the given network.",
         }
     }
 }

@@ -42,7 +42,7 @@ pub enum AUDCLNT {
 }
 
 impl AUDCLNT {
-    pub fn description(self) -> &'static str {
+    pub fn description(&self) -> &'static str {
         match self {
             AUDCLNT::AUDCLNT_E_NOT_INITIALIZED => "The IAudioClient object is not initialized.",
             AUDCLNT::AUDCLNT_E_ALREADY_INITIALIZED => "The IAudioClient object is already initialized.",
