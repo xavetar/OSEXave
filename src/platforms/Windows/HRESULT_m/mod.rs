@@ -241,7 +241,6 @@ mod xapo;
 mod xaudio2;
 #[cfg(any(feature = "windows"))]
 mod xps;
-#[cfg(any(feature = "windows"))]
 
 #[cfg(any(feature = "windows"))]
 pub use audclnt::{*};

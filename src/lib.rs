@@ -28,7 +28,7 @@ use platforms::Linux;
 use platforms::Darwin;
 
 #[cfg(target_os = "windows")]
-use platforms::Windows;
+use platforms::Windows::{*};
 
 macro_rules! import_oserror {
     ($os:ident) => {
@@ -42,9 +42,7 @@ import_oserror!(Linux);
 #[cfg(target_vendor = "apple")]
 import_oserror!(Darwin);
 
-#[cfg(target_os = "windows")]
-import_oserror!(Windows);
-
+#[cfg(any(target_os = "linux", target_vendor = "apple"))]
 impl std::fmt::Display for OSError {
     /// Shows readable description of the `OSError`.
     ///
