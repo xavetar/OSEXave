@@ -13,14 +13,45 @@
  * limitations under the License.
  */
 
+// It is strictly forbidden to use the from_code method, respected Microsoft decided to define
+// duplicate codes, but by defining different constant names, therefore, when using these codes,
+// it is mandatory to use through from_name, and not from_code. Otherwise, it may cause undefined
+// behavior or an unknown exception. Because one code corresponds to several constants.
+
+use super::{RawError};
+
+#[derive(Clone, Debug, Copy, Eq, Hash, Ord, PartialEq, PartialOrd)]
 pub enum USERMODE_SDBUS {
-    ERROR_IO_PREEMPTED = 0x89010001,
+    ERROR_IO_PREEMPTED,
 }
 
 impl USERMODE_SDBUS {
+    pub fn code(&self) -> u32 {
+        return match self {
+            USERMODE_SDBUS::ERROR_IO_PREEMPTED => 0x89010001 as u32,
+        }
+    }
+
+    pub fn error(&self) -> RawError {
+        return match self {
+            USERMODE_SDBUS::ERROR_IO_PREEMPTED => RawError::Kind(USERMODE_SDBUS::ERROR_IO_PREEMPTED),
+        }
+    }
+
     pub fn description(&self) -> &'static str {
-        match self {
+        return match self {
             USERMODE_SDBUS::ERROR_IO_PREEMPTED => "The operation was preempted by a higher priority operation. It must be resumed later.",
+        }
+    }
+
+    pub fn from_name(name: &str) -> USERMODE_SDBUS {
+        return match name {
+            "ERROR_IO_PREEMPTED" => USERMODE_SDBUS::ERROR_IO_PREEMPTED,
+        }
+    }
+    pub fn from_code(code: u32) -> USERMODE_SDBUS {
+        return match code {
+            0x89010001 => USERMODE_SDBUS::ERROR_IO_PREEMPTED,
         }
     }
 }

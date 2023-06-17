@@ -14,6 +14,12 @@
  */
 
 #[cfg(any(feature = "windows"))]
+pub(self) use crate::types::{RawError};
+
+#[cfg(any(feature = "windows"))]
+pub(self) use crate::types::{OSErrorOther};
+
+#[cfg(any(feature = "windows"))]
 mod audclnt;
 #[cfg(any(feature = "windows"))]
 mod audio;

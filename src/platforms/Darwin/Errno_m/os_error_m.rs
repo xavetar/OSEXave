@@ -16,7 +16,6 @@
 use super::{RawError};
 
 #[derive(Clone, Debug, Copy, Eq, Hash, Ord, PartialEq, PartialOrd)]
-#[repr(u32)]
 pub enum OSError {
     BASE = 0,
     EPERM = 1,
